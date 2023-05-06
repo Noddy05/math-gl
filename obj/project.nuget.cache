@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "dgSpecHash": "OqJTeKu4DZAim2yeziTmJb8Ib/bVNmZOY8/Mn9W+lgXY4SyK6wK7McMhB4c/+QUEYHwwPwLgBxyXH3kTIm17qA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\noah0\\source\\repos\\OpenGL Math\\OpenGL Math\\OpenGL Math.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\noah0\\.nuget\\packages\\freetype\\2.8.0.1\\freetype.2.8.0.1.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\freetype.redist\\2.8.0.1\\freetype.redist.2.8.0.1.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\freetype2\\2.6.0.1\\freetype2.2.6.0.1.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk\\4.7.7\\opentk.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.compute\\4.7.7\\opentk.compute.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.core\\4.7.7\\opentk.core.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.graphics\\4.7.7\\opentk.graphics.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.input\\4.7.7\\opentk.input.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.mathematics\\4.7.7\\opentk.mathematics.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.openal\\4.7.7\\opentk.openal.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.redist.glfw\\3.3.8.30\\opentk.redist.glfw.3.3.8.30.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.windowing.common\\4.7.7\\opentk.windowing.common.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.windowing.desktop\\4.7.7\\opentk.windowing.desktop.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.7.7\\opentk.windowing.graphicslibraryframework.4.7.7.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\sharpfont\\4.0.1\\sharpfont.4.0.1.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\sharpfont.dependencies\\2.5.5\\sharpfont.dependencies.2.5.5.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\sixlabors.imagesharp\\3.0.1\\sixlabors.imagesharp.3.0.1.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\noah0\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1602",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "SharpFont 4.0.1 does not provide an inclusive lower bound for dependency SharpFont.Dependencies. An approximate best match of SharpFont.Dependencies 2.5.5 was resolved.",
+      "libraryId": "SharpFont.Dependencies",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}

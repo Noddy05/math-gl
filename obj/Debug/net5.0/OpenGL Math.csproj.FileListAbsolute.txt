@@ -1,0 +1,36 @@
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenGL Math.exe
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenGL Math.deps.json
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenGL Math.runtimeconfig.json
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenGL Math.runtimeconfig.dev.json
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenGL Math.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\ref\OpenGL Math.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenGL Math.pdb
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.Compute.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.Core.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.Graphics.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.Input.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.Mathematics.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.OpenAL.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.Windowing.Common.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.Windowing.Desktop.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\OpenTK.Windowing.GraphicsLibraryFramework.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\runtimes\linux-x64\native\libglfw.so.3.3
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\runtimes\osx-arm64\native\libglfw.3.dylib
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\runtimes\osx-x64\native\libglfw.3.dylib
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\runtimes\win-x64\native\glfw3.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\runtimes\win-x86\native\glfw3.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.csprojAssemblyReference.cache
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.AssemblyInfoInputs.cache
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.AssemblyInfo.cs
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.csproj.CoreCompileInputs.cache
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.csproj.CopyComplete
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\ref\OpenGL Math.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.pdb
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\obj\Debug\net5.0\OpenGL Math.genruntimeconfig.cache
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\System.Drawing.Common.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll

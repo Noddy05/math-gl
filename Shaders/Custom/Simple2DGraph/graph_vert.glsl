@@ -20,8 +20,8 @@ void main()
     vec2 inputZ = (aTextureCoordinate - vec2(0.5)) * 2;
     vec2 outputZ = a * Pow(inputZ, 2) + b * inputZ + vec2(c, 0);
 
-    float angle = atan(outputZ.y, outputZ.x) * 180 / 3.14159265 + 180;
-    vec3 rgb = HSVToRGB(vec3(angle / 360.0, 1, 1));
+    float angle = atan(outputZ.y, outputZ.x) / (2 * 3.14159265) + 0.5;
+    vec3 rgb = HSVToRGB(vec3(angle, 1, 1));
     complexColor = rgb;
     float y = outputZ.x;
 

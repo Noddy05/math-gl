@@ -32,6 +32,9 @@ namespace MathGL
         public Camera camera;
         private GameObject plane;
         private GameObject text;
+        private GameObject quad;
+        private GameObject xAxis;
+        private GameObject yAxis;
 
         protected override void OnResize(ResizeEventArgs e)
         {
@@ -52,7 +55,11 @@ namespace MathGL
             GL.ClearColor(new Color4(255, 255, 255, 255));
             camera = new Camera();
             CreateProjectionMatrix();
+
+            //Setup inputs
             Input.Instantiate();
+
+            //Enable depth and backface culling
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.CullFace);
 
@@ -65,14 +72,34 @@ namespace MathGL
             Mesh planeMesh = MeshGeneration.GeneratePlane(121, 121);
             Material texturedMaterial = new Simple2DGraph();
             plane = new GameObject(planeMesh, texturedMaterial);
-            plane.transform.position = new Vector3(0, -1, -3);
+            plane.transform.position = new Vector3(0, 0, -3);
             //plane.transform.rotation = new Vector3(3.14f / 2, 0, 0);
 
             //Text GameObject
             Mesh textMesh = TextGeneration.GenerateMesh("f(z) = z^2 + 0.2 \nPos: (Re(z), Im(z), |z|) \nHSV: (Arg(z), 1, 1)", "CMU Sans Serif");
             Material textMaterial = new TexturedMaterial(textTexture);
             text = new GameObject(textMesh, textMaterial);
-            text.transform.position += new Vector3(0, 0, -2);
+            text.transform.position += new Vector3(0, 3, -2);
+
+            //Quad GameObject
+            Mesh quadMesh = MeshGeneration.GenerateQuad();
+            Material unlitMaterial = new DefaultShader(
+                @"C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\Shaders\Custom\2DGraphAxes\graph_vert.glsl",
+                @"C:\Users\noah0\source\repos\OpenGL Math\OpenGL Math\Shaders\Custom\2DGraphAxes\graph_frag.glsl");
+            quad = new GameObject(quadMesh, unlitMaterial);
+            quad.transform.position = new Vector3(0, 0, -3);
+
+            //X-Axis Name GameObject
+            Mesh xMesh = TextGeneration.GenerateMesh("Re(z)", "CMU Sans Serif");
+            xAxis = new GameObject(xMesh, textMaterial);
+            xAxis.transform.position = new Vector3(0.5f, 0, -2);
+            xAxis.transform.rotation = new Vector3(-3.14f / 2, 0, 0);
+
+            //Y-Axis Name GameObject
+            Mesh yMesh = TextGeneration.GenerateMesh("Im(z)", "CMU Sans Serif");
+            yAxis = new GameObject(yMesh, textMaterial);
+            yAxis.transform.position = new Vector3(1f, 0, -2.5f);
+            yAxis.transform.rotation = new Vector3(-3.14f / 2, 0, 3.14f / 2);
 
             base.OnLoad();
         }
@@ -85,7 +112,10 @@ namespace MathGL
             //Render GameObjects
             text.Render();
             plane.Render();
-            
+            quad.Render();
+            xAxis.Render();
+            yAxis.Render();
+
             //Swap buffers
             Context.SwapBuffers();
 

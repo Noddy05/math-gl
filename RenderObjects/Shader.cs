@@ -46,10 +46,8 @@ namespace MathGL.RenderObjects
                         break;
                     if(line.Substring(j, searchText.Length) == searchText)
                     {
-                        Console.WriteLine("search found!");
                         if(line[j + searchText.Length] == ' ')
                         {
-                            Console.WriteLine("space found!");
                             line = File.ReadAllText(line.Substring(j + searchText.Length
                                 + 1, line.Length - (j + searchText.Length + 1)));
                         }

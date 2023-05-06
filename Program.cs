@@ -18,6 +18,7 @@ namespace MathGL
             }
         }
 
+        //For printing an error to the console without stopping debugging.
         public static void ThrowError(string details, [CallerMemberName] string callingMember = null,
             [CallerFilePath] string callingFile = null, [CallerLineNumber] int callingLine = 0)
         {

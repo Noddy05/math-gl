@@ -15,16 +15,16 @@ namespace MathGL.Generation
             float[] vertices = new float[4 * 5];
             int[] triangles =
             {
-                0, 1, 2,
-                3, 2, 1
+                0, 2, 1,
+                3, 1, 2
             };
             for(int y = 0; y < 2; y++)
             {
                 for (int x = 0; x < 2; x++)
                 {
                     vertices[(x + 2 * y) * 5 + 0] = x;
-                    vertices[(x + 2 * y) * 5 + 1] = y;
-                    vertices[(x + 2 * y) * 5 + 2] = 0;
+                    vertices[(x + 2 * y) * 5 + 1] = 0;
+                    vertices[(x + 2 * y) * 5 + 2] = y;
                     vertices[(x + 2 * y) * 5 + 3] = x;
                     vertices[(x + 2 * y) * 5 + 4] = y;
                 }

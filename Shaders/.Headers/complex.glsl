@@ -10,7 +10,7 @@ vec2 Div(vec2 a, vec2 b){
 }
 
 vec2 Pow(vec2 a, float exponent){
-	float theta = atan(a.y / a.x);
+	float theta = atan(a.y, a.x);
 	float r = length(a);
 	return vec2(pow(r, exponent) * cos(theta * exponent), pow(r, exponent) * sin(theta * exponent));
 }

@@ -15,25 +15,27 @@ namespace MathGL.Renderables
         public Vector3 rotation;
         public Vector3 scale;
 
+        public Transform parent;
+
         protected int objectUniform;
 
         public Transform()
         {
             position = new Vector3();
             rotation = new Vector3();
-            scale = new Vector3();
+            scale = new Vector3(1);
         }
         public Transform(Vector3 position)
         {
             this.position = position;
             rotation = new Vector3();
-            scale = new Vector3();
+            scale = new Vector3(1);
         }
         public Transform(Vector3 position, Vector3 rotation)
         {
             this.position = position;
             this.rotation = rotation;
-            scale = new Vector3();
+            scale = new Vector3(1);
         }
         public Transform(Vector3 position, Vector3 rotation, Vector3 scale)
         {
@@ -46,6 +48,8 @@ namespace MathGL.Renderables
         {
             objectUniform = GL.GetUniformLocation(material.shader, "object");
         }
+
+        public virtual Matrix4 TransformationMatrix() { return Matrix4.Identity; }
 
         public virtual void Apply() { }
     }

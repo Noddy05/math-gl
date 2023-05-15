@@ -11,12 +11,11 @@ out float height;
 uniform mat4 projection = mat4(1);
 uniform mat4 camera = mat4(1);
 uniform mat4 object = mat4(1);
-uniform float t;
 
 vec2 function(vec2 functionInput){
     float a = 1, b = 0, c = 0.2;
     //return a * Pow(functionInput, 2) + b * functionInput + vec2(c, 0);
-    return a * Pow(functionInput, t) + b * functionInput + vec2(c, 0);
+    return a * Pow(functionInput, 2) + b * functionInput + vec2(c, 0);
 }
 
 void main()
@@ -30,7 +29,6 @@ void main()
     vec3 rgb = HSVToRGB(vec3(angle, 1, 1));
     complexColor = rgb;
     float y = outputZ.x;
-    y = length(outputZ);
 
     height = y;
     gl_Position = projection * camera * object * vec4(aPosition + vec3(0, y, 0), 1.0);

@@ -8,7 +8,20 @@ out vec4 fragColor;
 
 void main()
 {
-    if(height >= 1)
+    if(height >= 2)
         discard;
-    fragColor = vec4(complexColor, 1);
+
+    vec3 color = complexColor;
+
+    float width = 1000.01;
+    if((vTextureCoordinates.x - (0.5 - width) > 0 && vTextureCoordinates.x - (0.5 - width) < width * 2) ||
+        (vTextureCoordinates.y - (0.5 - width) > 0 && vTextureCoordinates.y - (0.5 - width) < width * 2))
+    {
+
+    } 
+    else
+    {
+        discard;
+    }
+    fragColor = vec4(color, 1);
 }

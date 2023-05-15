@@ -2,7 +2,7 @@
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
-namespace MathGL
+namespace MathGL.InputManager
 {
     class Key
     {

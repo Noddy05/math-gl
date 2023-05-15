@@ -10,7 +10,9 @@ namespace MathGL
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Print("Launching ");
+            Print("MathGL", ConsoleColor.Red);
+            PrintLine(" by Noah D. Dirksen");
 
             using (window = new Window())
             {
@@ -29,6 +31,30 @@ namespace MathGL
             Console.WriteLine(details);
             Console.WriteLine("(!) Error (!)");
             Console.ForegroundColor = foregroundColor;
+        }
+
+        //For printing an error to the console without stopping debugging.
+        public static void Print(string details, ConsoleColor foregroundColor = ConsoleColor.White,
+            ConsoleColor backgroundColor = ConsoleColor.Black)
+        {
+            ConsoleColor foregroundColorPrevious = Console.ForegroundColor;
+            ConsoleColor backgroundColorPrevious = Console.BackgroundColor;
+            Console.ForegroundColor = foregroundColor;
+            Console.BackgroundColor = backgroundColor;
+            Console.Write(details);
+            Console.ForegroundColor = foregroundColorPrevious;
+            Console.BackgroundColor = backgroundColorPrevious;
+        }
+        public static void PrintLine(string details, ConsoleColor foregroundColor = ConsoleColor.White,
+           ConsoleColor backgroundColor = ConsoleColor.Black)
+        {
+            ConsoleColor foregroundColorPrevious = Console.ForegroundColor;
+            ConsoleColor backgroundColorPrevious = Console.BackgroundColor;
+            Console.ForegroundColor = foregroundColor;
+            Console.BackgroundColor = backgroundColor;
+            Console.WriteLine(details);
+            Console.ForegroundColor = foregroundColorPrevious;
+            Console.BackgroundColor = backgroundColorPrevious;
         }
     }
 }

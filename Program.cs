@@ -14,10 +14,25 @@ namespace MathGL
             Print("MathGL", ConsoleColor.Red);
             PrintLine(" by Noah D. Dirksen");
 
+            ApproximateZeta(0.5f);
+
             using (window = new Window())
             {
                 window.Run();
             }
+        }
+
+        static void ApproximateZeta(float power)
+        {
+            float a = 0;
+            float sum = 0;
+            for(int n = 0; n < 100000; n++)
+            {
+                if (n + a == 0)
+                    continue;
+                sum += MathF.Pow(n + a, -power);
+            }
+            Console.WriteLine(sum);
         }
 
         //For printing an error to the console without stopping debugging.

@@ -70,20 +70,37 @@ namespace MathGL.Renderables
 
         public bool MouseHovering()
         {
-            Vector2 mousePosition = Program.GetWindow().MousePosition;
-            mousePosition.Y = Program.GetWindow().Size.Y - mousePosition.Y;
+            Vector2 mousePosition = Program.GetWindow().MousePosition / Program.GetWindow().Size;
+            mousePosition.Y = 1 - mousePosition.Y;
             return mousePosition.X >= PositionToPixel().X && mousePosition.X <= EndPositionToPixel().X
                 && mousePosition.Y >= PositionToPixel().Y && mousePosition.Y <= EndPositionToPixel().Y;
         }
+        public Vector2 ParentOffset()
+        {
+            Vector3 offset = new Vector3();
+            Transform parent = transform.parent;
+
+            while(parent != null)
+            {
+                offset += parent.position;
+                parent = parent.parent;
+            }
+
+            return new Vector2(offset.X, offset.Y);
+        }
         public Vector2 PositionToPixel()
         {
-            return new Vector2(Map(transform.position.X, -1, 1, 0, Program.GetWindow().Size.X),
-                Map(transform.position.Y, -1, 1, 0, Program.GetWindow().Size.Y));
+            Vector2 offset = ParentOffset();
+
+            return new Vector2(Map((transform.position.X + offset.X), -1, 1, 0, 1),
+                Map((transform.position.Y + offset.Y), -1, 1, 0, 1));
         }
         public Vector2 EndPositionToPixel()
         {
-            return new Vector2(Map(transform.position.X + transform.scale.X, -1, 1, 0, Program.GetWindow().Size.X),
-                Map(transform.position.Y + transform.scale.Y, -1, 1, 0, Program.GetWindow().Size.Y));
+            Vector2 offset = ParentOffset();
+
+            return new Vector2(transform.position.X + transform.scale.X + offset.X, 
+                transform.position.Y + transform.scale.Y + offset.Y);
         }
 
         public float Map(float t, float tMin, float tMax, float mappedMin, float mappedMax)
@@ -93,9 +110,11 @@ namespace MathGL.Renderables
 
         public void Render()
         {
+            Vector2 size = Program.GetWindow().Size;
+            float widthToHeightRatio = size.X / size.Y;
             material.Bind(Matrix4.Identity);
             transform.Apply();
-            projectionMatrix = Matrix4.CreateOrthographic(1, (float)Program.GetWindow().Size.Y / Program.GetWindow().Size.X,
+            projectionMatrix = Matrix4.CreateOrthographic(1, size.Y / size.X,
                 0.01f, 1000f);
             GL.UniformMatrix4(projectionUniform, false, ref projectionMatrix);
 

@@ -33,7 +33,9 @@ namespace MathGL.Renderables
         {
             Matrix4 transformationMatrix = Matrix4.Identity;
             transformationMatrix *= Matrix4.CreateFromQuaternion(Quaternion.FromEulerAngles(
-                new Vector3(0, MathF.PI / 2, MathF.PI / 2))) * Matrix4.CreateScale(scale.X, scale.Y, 1) * TransformationMatrix() 
+                new Vector3(0, MathF.PI / 2, MathF.PI / 2))) * Matrix4.CreateScale(
+                    scale.X / Program.GetWindow().Size.X, scale.Y / Program.GetWindow().Size.Y, 1) 
+                * TransformationMatrix() 
                 * Matrix4.CreateTranslation(new Vector3(0, 0, -1)) * Matrix4.CreateScale(new Vector3(0.5f,
                 (float)Program.GetWindow().Size.Y / Program.GetWindow().Size.X / 2f, 1));
 

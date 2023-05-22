@@ -29,9 +29,9 @@ namespace MathGL.CameraTypes
         public override void Update(FrameEventArgs e)
         {
             if (Input.KeyDown("Q"))
-                center -= Vector3.UnitY * (float)e.Time;
+                center -= Vector3.UnitY * (float)e.Time * MathF.Sqrt(-offset.Z);
             if (Input.KeyDown("E"))
-                center += Vector3.UnitY * (float)e.Time;
+                center += Vector3.UnitY * (float)e.Time * MathF.Sqrt(-offset.Z);
         }
 
         public override void OnMouseMove(MouseMoveEventArgs e)

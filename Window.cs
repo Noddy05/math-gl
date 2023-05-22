@@ -33,9 +33,13 @@ namespace MathGL
         }
         
         public Camera camera;
+        private List<GameObject> graphs = new List<GameObject>();
+        private RiemannSurface riemannSurfaceMaterial;
         private List<GameObject> gameObjects = new List<GameObject>();
         private List<UIObject> uiObjects = new List<UIObject>();
+        private Slider slider;
         public float timeSinceStart;
+        public int sliderSteps = 8;
 
         protected override void OnResize(ResizeEventArgs e)
         {
@@ -55,6 +59,7 @@ namespace MathGL
             IsVisible = true;
             GL.ClearColor(new Color4(255, 255, 255, 255));
             camera = new OrbitCamera(new Vector3(0.5f, 0.75f, -2.5f), new Vector3(0, 0, -5f));
+            //camera = new FreeCamera(new Vector3(0.5f, 0.75f, -2.5f), new Vector3(0, 0, 0f));
             CreateProjectionMatrix();
 
             //Setup inputs
@@ -70,19 +75,11 @@ namespace MathGL
             int textTexture = FontLibrary.fonts["CMU Sans Serif"].textureHandle;
 
             //First Plot GameObject
-            Mesh planeMesh = MeshGeneration.GeneratePlane(3001, 3001);
-            Material texturedMaterial = new Simple2DGraph();
-            gameObjects.Add(new GameObject(planeMesh, texturedMaterial));
-            gameObjects[gameObjects.Count - 1].transform.position = new Vector3(0, 0, -3);
-            //plane.transform.rotation = new Vector3(3.14f / 2, 0, 0);
-
-            //Second Plot GameObject
-            /*
-            Mesh planeMesh2 = MeshGeneration.GeneratePlane(121, 121);
-            Material texturedMaterial2 = new Simple2DGraph2();
-            gameObjects.Add(new GameObject(planeMesh2, texturedMaterial2));
-            gameObjects[gameObjects.Count - 1].transform.position = new Vector3(0, 0, -3);
-            */
+            Mesh riemannPlaneMesh = MeshGeneration.GeneratePlane(501, 501, false);
+            riemannSurfaceMaterial = new RiemannSurface(0);
+            riemannSurfaceMaterial.cullFaces = false;
+            graphs.Add(new GameObject(riemannPlaneMesh, riemannSurfaceMaterial));
+            graphs[graphs.Count - 1].transform.position = new Vector3(0, 0, -3);
 
             //Text GameObject
             Mesh textMesh = TextGeneration.GenerateMesh("f(z) = z^2 + 0.2 \nPos: (Re(z), Im(z), |z|) \nHSV: (Arg(z), 1, 1)", "CMU Sans Serif");
@@ -112,13 +109,45 @@ namespace MathGL
 
             Material redMaterial = new UnlitMaterial(Color4.Red);
             Material greenMaterial = new UnlitMaterial(Color4.Green);
-            UIObject header = new UIObject(quadMesh, greenMaterial).Positioned(new Vector3(0, 0f, 0))
-                .Scaled(new Vector3(0.5f, 0.1f, 1)).AddComponent(new UI.Draggable(0.5f, 0.6f));
+            Material blackMaterial = new UnlitMaterial(Color4.Black);
+            Material colorWheelMaterial = new ColorWheelMaterial();
+            UIObject sliderBehind = new UIObject(quadMesh, blackMaterial).Positioned(new Vector3(0.125f, -0.1f, 0))
+                 .Scaled(new Vector3(0.25f, 0.1f, 1));
+
+            UIObject header = new UIObject(quadMesh, greenMaterial).Positioned(new Vector3(0f, 0f, 0))
+                .Scaled(new Vector3(0.1f, 0.1f, 1)).AddComponent(new Draggable(0.5f, 0.6f));
             uiObjects.Add(header);
             UIObject redWindow = new UIObject(quadMesh, redMaterial).Positioned(new Vector3(0, -0.5f, 0))
                 .Scaled(new Vector3(0.5f, 0.5f, 1));
             redWindow.transform.parent = header.transform;
+            sliderBehind.transform.parent = header.transform;
+
+            this.slider = new(0.15f, 1f / sliderSteps);
+            UIObject slider = new UIObject(quadMesh, greenMaterial).Positioned(new Vector3(0.125f, -0.1f, 0))
+                .Scaled(new Vector3(0.1f, 0.1f, 1)).AddComponent(this.slider);
+            slider.transform.parent = header.transform;
+
+            UIObject colorWheel = new UIObject(quadMesh, colorWheelMaterial).Positioned(new Vector3(0.25f, -0.5f, 0))
+                .Scaled(new Vector3(0.1f, 0.1f, 1));
+            colorWheel.transform.parent = header.transform;
+            uiObjects.Add(colorWheel);
+            uiObjects.Add(slider);
+            uiObjects.Add(sliderBehind);
             uiObjects.Add(redWindow);
+
+
+            //Quad GameObject
+            Material riemannSphereMaterial = new RiemannSphere();
+            Mesh cubeMesh = MeshGeneration.GenerateCube();
+            riemannSphereMaterial.cullFaces = false;
+            gameObjects.Add(new GameObject(cubeMesh, riemannSphereMaterial));
+            gameObjects[gameObjects.Count - 1].transform.position = new Vector3(0, 0, 0);
+
+            //Quad GameObject
+            Material contourMapMaterial = new ContourMap();
+            riemannSphereMaterial.cullFaces = false;
+            gameObjects.Add(new GameObject(quadMesh, contourMapMaterial));
+            gameObjects[gameObjects.Count - 1].transform.position = new Vector3(0, 0, -1.5f);
 
             base.OnLoad();
         }
@@ -126,26 +155,30 @@ namespace MathGL
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             timeSinceStart += (float)args.Time;
+            riemannSurfaceMaterial.branch = 0;
 
             //Clear background
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            //Render GameObjects
-            GL.Enable(EnableCap.CullFace);
-            GL.Enable(EnableCap.DepthTest);
             foreach (GameObject gameObject in gameObjects)
             {
                 gameObject.Render();
             }
 
-
-            //Render UIObjects
-            GL.Disable(EnableCap.CullFace);
-            GL.Disable(EnableCap.DepthTest);
+            //Use instanced rendering to draw multiple branches of a graph
+            foreach (GameObject gameObject in graphs)
+            {
+                gameObject.PrepareRender();
+                #pragma warning disable CS0618 // Type or member is obsolete
+                GL.DrawElementsInstanced(BeginMode.Triangles, gameObject.mesh.ibo.GetIndices().Length, 
+                    DrawElementsType.UnsignedInt, IntPtr.Zero, 1);
+                #pragma warning restore CS0618 // Type or member is obsolete IntPtr.Zero is obsolete, but 0 doesn't work! :(
+            }
+            /*
             foreach (UIObject uiObject in uiObjects)
             {
                 uiObject.Render();
-            }
+            }*/
 
             //Swap buffers
             Context.SwapBuffers();

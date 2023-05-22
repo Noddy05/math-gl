@@ -14,6 +14,9 @@ namespace MathGL.UI
         public void SetComponentParent(UIObject parent)
         {
             this.parent = parent;
+            NewComponentParent();
         }
+
+        protected virtual void NewComponentParent() { }
     }
 }

@@ -11,7 +11,7 @@ out float height;
 uniform mat4 projection = mat4(1);
 uniform mat4 camera = mat4(1);
 uniform mat4 object = mat4(1);
-uniform float t;
+uniform float branch;
 
 vec2 function(vec2 functionInput){
     //float a = 1, b = sin(t / 3), c = 0.2;
@@ -28,7 +28,9 @@ vec2 function(vec2 functionInput){
 
     return z;*/
 
-    return Pow(functionInput, 0.5, 1);
+    //return Log(functionInput, gl_InstanceID + branch);
+
+    return ExpandedZeta(functionInput);
     //return Fibonacci(functionInput);
 }
 
@@ -36,17 +38,17 @@ void main()
 {
     vTextureCoordinates = aTextureCoordinate;
 
-    float minToMax = 4;
+    float minToMax = 16;
     vec2 inputZ = (aTextureCoordinate - vec2(0.5)) * minToMax;
-    //inputZ.x += t * 10;
     vec2 outputZ = function(inputZ);
 
-    float angle = atan(outputZ.y, outputZ.x) / (2 * 3.14159265) + 0.5;
+    float angle = atan(outputZ.y, outputZ.x) / (2 * pi) + 0.5;
     vec3 rgb = HSVToRGB(vec3(angle, 1, 1 - 1 / (20 * length(outputZ) + 1)));
     complexColor = rgb;
-    float y = outputZ.x;
+    float y = length(outputZ);
     y /= minToMax;
 
     height = 0;
-    gl_Position = projection * camera * object * vec4(aPosition + vec3(0, min(max(y, -2), 2), 0), 1.0);
+    y = max(min(y, 1), -1);
+    gl_Position = projection * camera * object * vec4(aPosition + vec3(0, y, 0), 1.0);
 }

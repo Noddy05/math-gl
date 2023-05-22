@@ -19,7 +19,7 @@ namespace MathGL.UI
         protected bool buttonPressed = false;
         private void Pressed(MouseButtonEventArgs e)
         {
-            if(e.Button == MouseButton.Button1)
+            if(e.Button == MouseButton.Left)
             {
                 if (parent.MouseHovering())
                 {

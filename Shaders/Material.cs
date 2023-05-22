@@ -11,6 +11,7 @@ namespace MathGL.Shaders
 {
     class Material
     {
+        public bool cullFaces = true;
         public Shader shader;
         private int cameraUniform;
 
@@ -24,6 +25,11 @@ namespace MathGL.Shaders
         /// base.Bind() should be the first thing called in any class that inherits this function
         /// </summary>
         public virtual void Bind(Matrix4 cameraMatrix) { 
+            if(cullFaces)
+                GL.Enable(EnableCap.CullFace);
+            else
+                GL.Disable(EnableCap.CullFace);
+
             GL.UseProgram(shader);
             GL.UniformMatrix4(cameraUniform, false, ref cameraMatrix);
         }

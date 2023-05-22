@@ -43,5 +43,15 @@ namespace MathGL.Renderables
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, mesh.ibo);
             GL.DrawElements(PrimitiveType.Triangles, mesh.ibo.GetIndices().Length, DrawElementsType.UnsignedInt, 0);
         }
+        public void PrepareRender()
+        {
+            material.Bind(Program.GetWindow().camera.CameraMatrix());
+            transform.Apply();
+            Matrix4 projectionMatrix = Program.GetWindow()!.camera.GetProjectionMatrix();
+            GL.UniformMatrix4(projectionUniform, false, ref projectionMatrix);
+
+            GL.BindVertexArray(mesh.vao);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, mesh.ibo);
+        }
     }
 }
